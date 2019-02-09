@@ -1,7 +1,5 @@
 module Control.Lens.Format where
 
-import Control.Lens.Internal.SplitMorphism
-
 {- | A normalizing optic, isomorphic to Prism but with different laws, specifically `getMaybe` needs not to
 be injective; i.e., distinct inputs may have the same `getMaybe` result, which combined with a subsequent
 `reverseGet` yields a normalized form for `a`. Composition with stronger optics (`Prism` and `Iso`) yields

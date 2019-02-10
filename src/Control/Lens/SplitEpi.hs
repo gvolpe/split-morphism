@@ -6,7 +6,7 @@ So `get . reverseGet` remains an identity but `reverseGet . get` is merely idemp
 The following statements hold:
   * `reverseGet` is a "section" of `get`,
   * `get` is a "retraction" of `reverseGet`,
-  *  - `B` is a "retract" of `A`,
+  *  - `b` is a "retract" of `a`,
   *  - the pair `(get, reverseGet)` is a "splitting" of the idempotent `reverseGet . get`.
 -}
 data SplitEpi a b = SplitEpi

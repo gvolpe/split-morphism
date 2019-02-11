@@ -4,9 +4,6 @@ module Control.Lens.Format where
 
 import Control.Lens
 import Control.Lens.Prism
-import Control.Monad.Reader (runReaderT)
-import Control.Monad.Reader.Class (MonadReader)
-import Data.Monoid (First)
 
 {- | A normalizing optic, isomorphic to Prism but with different laws, specifically `getMaybe` needs not to
 be injective; i.e., distinct inputs may have the same `getMaybe` result, which combined with a subsequent
@@ -29,5 +26,5 @@ fromPrism p = Format (f p) (g p)
     f :: Prism' a b -> a -> Maybe b
     f p x = x ^? p
     g :: Prism' a b -> b -> a
-    g p = runIdentity . runReaderT (review p)
+    g = review
 

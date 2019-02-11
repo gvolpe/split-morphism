@@ -22,6 +22,11 @@ data SplitMono a b = SplitMono
 normalize :: SplitMono a b -> a -> a
 normalize (SplitMono f g) = g . f
 
+-- | Compose with another SplitMono.
+composeSplitMono :: SplitMono a b -> SplitMono b c -> SplitMono a c
+composeSplitMono (SplitMono x y) (SplitMono q w) =
+    SplitMono (q . x) (y . w)
+
 -- | An Isomorphism is trivially a SplitMono.
 fromIso :: Iso' a b -> SplitMono a b
 fromIso i = SplitMono (f i) (g i)

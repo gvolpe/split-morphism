@@ -22,6 +22,11 @@ data SplitEpi a b = SplitEpi
 normalize :: SplitEpi a b -> a -> a
 normalize (SplitEpi f g) = g . f
 
+-- | Compose with another SplitEpi.
+composeSplitEpi :: SplitEpi a b -> SplitEpi b c -> SplitEpi a c
+composeSplitEpi (SplitEpi x y) (SplitEpi q w) =
+    SplitEpi (q . x) (y . w)
+
 -- | An Isomorphism is trivially a SplitEpi.
 fromIso :: Iso' a b -> SplitEpi a b
 fromIso i = SplitEpi (f i) (g i)

@@ -20,6 +20,8 @@ description:         Please see the README on GitHub at <https://github.com/gvol
 
 dependencies:
 - base >= 4.7 && < 5
+- lens
+- mtl
 
 library:
   source-dirs: src

@@ -3,6 +3,7 @@
 module Control.Lens.Format where
 
 import Control.Lens
+import Control.Lens.Internal.Iso (isoGet, isoReverseGet)
 
 {- | A normalizing optic, isomorphic to Prism but with different laws, specifically `getMaybe` needs not to
 be injective; i.e., distinct inputs may have the same `getMaybe` result, which combined with a subsequent
@@ -18,6 +19,11 @@ data Format a b = Format
 normalize :: Format a b -> a -> Maybe a
 normalize (Format f g) x = g <$> f x
 
+-- | Compose with an Iso.
+composeIso :: Format a b -> Iso' b c -> Format a c
+composeIso (Format x y) i =
+    Format (fmap (isoGet i) . x) (y . isoReverseGet i)
+
 -- | A Prism is trivially a Format.
 fromPrism :: Prism' a b -> Format a b
 fromPrism p = Format (f p) (g p)
@@ -29,10 +35,8 @@ fromPrism p = Format (f p) (g p)
 
 -- | An Isomorphism is trivially a Format.
 fromIso :: Iso' a b -> Format a b
-fromIso i = Format (f i) (g i)
+fromIso i = Format (f i) (isoReverseGet i)
   where
     f :: Iso' a b -> a -> Maybe b
     f p x = x ^? p
-    g :: Iso' a b -> b -> a
-    g = review
 

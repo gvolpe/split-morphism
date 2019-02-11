@@ -3,6 +3,7 @@
 module Control.Lens.SplitMono where
 
 import Control.Lens
+import Control.Lens.Internal.Iso (isoGet, isoReverseGet)
 
 {- | A split monomorphism, which we can think of as a weaker `Iso a b` where `a` is a "smaller" type.
 So `reverseGet . get` remains an identity but `get . reverseGet` is merely idempotent (i.e., it normalizes values in `b`).
@@ -27,12 +28,12 @@ composeSplitMono :: SplitMono a b -> SplitMono b c -> SplitMono a c
 composeSplitMono (SplitMono x y) (SplitMono q w) =
     SplitMono (q . x) (y . w)
 
+-- | Compose with an Iso.
+composeIso :: SplitMono a b -> Iso' b c -> SplitMono a c
+composeIso (SplitMono x y) i =
+    SplitMono (isoGet i . x) (y . isoReverseGet i)
+
 -- | An Isomorphism is trivially a SplitMono.
 fromIso :: Iso' a b -> SplitMono a b
-fromIso i = SplitMono (f i) (g i)
-  where
-    f :: Iso' a b -> a -> b
-    f p x = x ^. p
-    g :: Iso' a b -> b -> a
-    g = review
+fromIso i = SplitMono (isoGet i) (isoReverseGet i)
 

@@ -3,6 +3,7 @@
 module Control.Lens.SplitEpi where
 
 import Control.Lens
+import Control.Lens.Internal.Iso (isoGet, isoReverseGet)
 
 {- | A split epimorphism, which we can think of as a weaker `Iso a b` where `b` is a "smaller" type.
 So `get . reverseGet` remains an identity but `reverseGet . get` is merely idempotent (i.e., it normalizes values in `a`).
@@ -27,12 +28,12 @@ composeSplitEpi :: SplitEpi a b -> SplitEpi b c -> SplitEpi a c
 composeSplitEpi (SplitEpi x y) (SplitEpi q w) =
     SplitEpi (q . x) (y . w)
 
+-- | Compose with an Iso.
+composeIso :: SplitEpi a b -> Iso' b c -> SplitEpi a c
+composeIso (SplitEpi x y) i =
+    SplitEpi (isoGet i . x) (y . isoReverseGet i)
+
 -- | An Isomorphism is trivially a SplitEpi.
 fromIso :: Iso' a b -> SplitEpi a b
-fromIso i = SplitEpi (f i) (g i)
-  where
-    f :: Iso' a b -> a -> b
-    f p x = x ^. p
-    g :: Iso' a b -> b -> a
-    g = review
+fromIso i = SplitEpi (isoGet i) (isoReverseGet i)
 

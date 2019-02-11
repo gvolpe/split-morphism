@@ -4,7 +4,6 @@
 module Control.Lens.Wedge where
 
 import Control.Lens
-import Control.Lens.Internal.Iso (isoGet, isoReverseGet)
 import Data.Functor.Invariant.TH
 
 {- | Composition of a `SplitMono` and a `SplitEpi`, yielding an even weaker structure where neither
@@ -28,9 +27,9 @@ composeWedge (Wedge x y) (Wedge q w) =
 -- | Compose with an Iso.
 composeIso :: Wedge a b -> Iso' b c -> Wedge a c
 composeIso (Wedge x y) i =
-    Wedge (isoGet i . x) (y . isoReverseGet i)
+    Wedge ((^. i) . x) (y . review i)
 
 -- | An Isomorphism is trivially a Wedge.
 fromIso :: Iso' a b -> Wedge a b
-fromIso i = Wedge (isoGet i) (isoReverseGet i)
+fromIso i = Wedge (^. i) (review i)
 

@@ -10,7 +10,6 @@ import Control.Lens.Format (Format (..))
 import Control.Lens.SplitEpi (SplitEpi (..))
 import Control.Lens.SplitMono (SplitMono (..))
 import Control.Lens.Wedge (Wedge (..))
-import Control.Lens.Internal.Prism (prismGet, prismReverseGet)
 
 -- |  Swapping `get` and `reverseGet` yields a `SplitMono.
 reverseEpi :: SplitEpi a b -> SplitMono b a
@@ -33,7 +32,7 @@ composeSplitEpiMono (SplitEpi x y) (SplitMono q w) =
 -- | Composition between SplitEpi and Prism.
 composeSplitEpiPrism :: SplitEpi a b -> Prism' b c -> Format a c
 composeSplitEpiPrism (SplitEpi x y) p =
-    Format (prismGet p . x) (y . prismReverseGet p)
+    Format ((^? p) . x) (y . review p)
 
 -- | SplitEpi as Wedge.
 epiAsWedge :: SplitEpi a b -> Wedge a b

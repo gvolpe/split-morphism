@@ -5,8 +5,6 @@ module Control.Lens.Format where
 
 import Control.Monad ((>=>))
 import Control.Lens
-import Control.Lens.Internal.Iso (isoGet, isoReverseGet)
-import Control.Lens.Internal.Prism (prismGet, prismReverseGet)
 import Data.Functor.Invariant.TH
 
 {- | A normalizing optic, isomorphic to Prism but with different laws, specifically `getMaybe` needs not to
@@ -27,21 +25,18 @@ normalize (Format f g) x = g <$> f x
 -- | Compose with a Prism.
 composePrism :: Format a b -> Prism' b c -> Format a c
 composePrism (Format x y) p =
-    Format (x >=> prismGet p) (y . prismReverseGet p)
+    Format (x >=> (^? p)) (y . review p)
 
 -- | Compose with an Iso.
 composeIso :: Format a b -> Iso' b c -> Format a c
 composeIso (Format x y) i =
-    Format (fmap (isoGet i) . x) (y . isoReverseGet i)
+    Format (fmap (^. i) . x) (y . review i)
 
 -- | A Prism is trivially a Format.
 fromPrism :: Prism' a b -> Format a b
-fromPrism p = Format (prismGet p) (prismReverseGet p)
+fromPrism p = Format (^? p) (review p)
 
 -- | An Isomorphism is trivially a Format.
 fromIso :: Iso' a b -> Format a b
-fromIso i = Format (f i) (isoReverseGet i)
-  where
-    f :: Iso' a b -> a -> Maybe b
-    f p x = x ^? p
+fromIso i = Format (^? i) (review i)
 

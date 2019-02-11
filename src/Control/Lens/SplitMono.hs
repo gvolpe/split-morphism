@@ -4,7 +4,6 @@
 module Control.Lens.SplitMono where
 
 import Control.Lens
-import Control.Lens.Internal.Iso (isoGet, isoReverseGet)
 import Data.Functor.Invariant.TH
 
 {- | A split monomorphism, which we can think of as a weaker `Iso a b` where `a` is a "smaller" type.
@@ -34,9 +33,9 @@ composeSplitMono (SplitMono x y) (SplitMono q w) =
 -- | Compose with an Iso.
 composeIso :: SplitMono a b -> Iso' b c -> SplitMono a c
 composeIso (SplitMono x y) i =
-    SplitMono (isoGet i . x) (y . isoReverseGet i)
+    SplitMono ((^. i) . x) (y . review i)
 
 -- | An Isomorphism is trivially a SplitMono.
 fromIso :: Iso' a b -> SplitMono a b
-fromIso i = SplitMono (isoGet i) (isoReverseGet i)
+fromIso i = SplitMono (^. i) (review i)
 

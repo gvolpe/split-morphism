@@ -4,7 +4,6 @@
 module Control.Lens.SplitEpi where
 
 import Control.Lens
-import Control.Lens.Internal.Iso (isoGet, isoReverseGet)
 import Data.Functor.Invariant.TH
 
 {- | A split epimorphism, which we can think of as a weaker `Iso a b` where `b` is a "smaller" type.
@@ -34,9 +33,9 @@ composeSplitEpi (SplitEpi x y) (SplitEpi q w) =
 -- | Compose with an Iso.
 composeIso :: SplitEpi a b -> Iso' b c -> SplitEpi a c
 composeIso (SplitEpi x y) i =
-    SplitEpi (isoGet i . x) (y . isoReverseGet i)
+    SplitEpi ((^. i) . x) (y . review i)
 
 -- | An Isomorphism is trivially a SplitEpi.
 fromIso :: Iso' a b -> SplitEpi a b
-fromIso i = SplitEpi (isoGet i) (isoReverseGet i)
+fromIso i = SplitEpi (^. i) (review i)
 

@@ -1,4 +1,5 @@
-{-# LANGUAGE Rank2Types #-}
+{-# LANGUAGE Rank2Types      #-}
+{-# LANGUAGE TemplateHaskell #-}
 
 module Control.Lens.Format where
 
@@ -6,6 +7,7 @@ import Control.Monad ((>=>))
 import Control.Lens
 import Control.Lens.Internal.Iso (isoGet, isoReverseGet)
 import Control.Lens.Internal.Prism (prismGet, prismReverseGet)
+import Data.Functor.Invariant.TH
 
 {- | A normalizing optic, isomorphic to Prism but with different laws, specifically `getMaybe` needs not to
 be injective; i.e., distinct inputs may have the same `getMaybe` result, which combined with a subsequent
@@ -16,6 +18,7 @@ data Format a b = Format
     { getMaybe :: a -> Maybe b
     , reverseGet :: b -> a
     }
+$(deriveInvariant ''Format)
 
 -- | `getMaybe` and `reverseGet`, yielding a normalized formatted value. Subsequent getMaybe/reverseGet cycles are idempotent.
 normalize :: Format a b -> a -> Maybe a

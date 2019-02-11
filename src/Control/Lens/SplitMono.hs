@@ -1,9 +1,11 @@
-{-# LANGUAGE Rank2Types #-}
+{-# LANGUAGE Rank2Types      #-}
+{-# LANGUAGE TemplateHaskell #-}
 
 module Control.Lens.SplitMono where
 
 import Control.Lens
 import Control.Lens.Internal.Iso (isoGet, isoReverseGet)
+import Data.Functor.Invariant.TH
 
 {- | A split monomorphism, which we can think of as a weaker `Iso a b` where `a` is a "smaller" type.
 So `reverseGet . get` remains an identity but `get . reverseGet` is merely idempotent (i.e., it normalizes values in `b`).
@@ -18,6 +20,7 @@ data SplitMono a b = SplitMono
     { get :: a -> b
     , reverseGet :: b -> a
     }
+$(deriveInvariant ''SplitMono)
 
 -- | `reverseGet . get`, yielding a normalized formatted value. Subsequent get/reverseGet cycles are idempotent.
 normalize :: SplitMono a b -> a -> a

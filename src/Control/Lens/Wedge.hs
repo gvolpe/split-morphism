@@ -1,9 +1,11 @@
-{-# LANGUAGE Rank2Types #-}
+{-# LANGUAGE Rank2Types      #-}
+{-# LANGUAGE TemplateHaskell #-}
 
 module Control.Lens.Wedge where
 
 import Control.Lens
 import Control.Lens.Internal.Iso (isoGet, isoReverseGet)
+import Data.Functor.Invariant.TH
 
 {- | Composition of a `SplitMono` and a `SplitEpi`, yielding an even weaker structure where neither
 `reverseGet . get` and `get . reverseGet` is an identity but both are idempotent.
@@ -12,6 +14,7 @@ data Wedge a b = Wedge
     { get :: a -> b
     , reverseGet :: b -> a
     }
+$(deriveInvariant ''Wedge)
 
 -- | Swapping `get` and `reverseGet` yields a Wedge.
 reverse :: Wedge a b -> Wedge b a

@@ -1,9 +1,11 @@
-{-# LANGUAGE Rank2Types #-}
+{-# LANGUAGE Rank2Types      #-}
+{-# LANGUAGE TemplateHaskell #-}
 
 module Control.Lens.SplitEpi where
 
 import Control.Lens
 import Control.Lens.Internal.Iso (isoGet, isoReverseGet)
+import Data.Functor.Invariant.TH
 
 {- | A split epimorphism, which we can think of as a weaker `Iso a b` where `b` is a "smaller" type.
 So `get . reverseGet` remains an identity but `reverseGet . get` is merely idempotent (i.e., it normalizes values in `a`).
@@ -18,6 +20,7 @@ data SplitEpi a b = SplitEpi
     { get :: a -> b
     , reverseGet :: b -> a
     }
+$(deriveInvariant ''SplitEpi)
 
 -- | `reverseGet . get`, yielding a normalized formatted value. Subsequent get/reverseGet cycles are idempotent.
 normalize :: SplitEpi a b -> a -> a

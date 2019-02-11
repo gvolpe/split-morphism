@@ -35,10 +35,11 @@ composeSplitEpiPrism :: SplitEpi a b -> Prism' b c -> Format a c
 composeSplitEpiPrism (SplitEpi x y) p =
     Format (prismGet p . x) (y . prismReverseGet p)
 
--- | Conversions
+-- | SplitEpi as Wedge.
 epiAsWedge :: SplitEpi a b -> Wedge a b
 epiAsWedge (SplitEpi x y) = Wedge x y
 
+-- | SplitMono as Wedge.
 monoAsWedge :: SplitMono a b -> Wedge a b
 monoAsWedge (SplitMono x y) = Wedge x y
 

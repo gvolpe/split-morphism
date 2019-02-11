@@ -23,6 +23,7 @@ dependencies:
 - invariant
 - lens
 - mtl
+- QuickCheck
 
 library:
   source-dirs: src

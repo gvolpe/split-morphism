@@ -41,3 +41,4 @@ fromIso i = Format (f i) (isoReverseGet i)
   where
     f :: Iso' a b -> a -> Maybe b
     f p x = x ^? p
+

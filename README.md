@@ -45,7 +45,7 @@ version](https://github.com/gemini-hlsw/ocs3/blob/develop/modules/core/shared/sr
 
 ## Examples
 
-It is recommended to have qualified import of the modules, otherwise you'll experience some naming clash in scope.
+It is recommended to have qualified import of the modules, otherwise you might have some issues..
 
 ### Split Epimorphism
 
@@ -104,7 +104,7 @@ ghci> import qualified Control.Lens.Wedge as W
 ghci> let epi = SE.SplitEpi fromInteger toInteger :: SE.SplitEpi Integer Int
 ghci> let mono = SM.SplitMono toInteger fromInteger :: SM.SplitMono Int Integer
 ghci> let wedge = epi `S.composeSplitEpiMono` mono :: Wedge Integer Integer
-ghci> W.get  wedge 123
+ghci> W.get wedge 123
 123
 ghci> W.reverseGet  wedge 123
 123

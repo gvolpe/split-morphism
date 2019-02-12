@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 8ab3e1eb99030f48a81019ab65c662f0e73a3881320432c5eace0bc5d2c7cb11
+-- hash: dd3d2ced30942a2b184e34173693bdb2b966543f437e137cc172acc11409da91
 
 name:           split-morphism
 version:        0.1.0.0
@@ -21,6 +21,7 @@ license-file:   LICENSE
 build-type:     Simple
 extra-source-files:
     README.md
+    ChangeLog.md
 
 source-repository head
   type: git

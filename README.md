@@ -1,6 +1,8 @@
 split-morphism
 ==============
 
+[![CircleCI](https://circleci.com/gh/gvolpe/split-morphism/tree/master.svg?style=svg)](https://circleci.com/gh/gvolpe/split-morphism/tree/master)
+
 Experimental package representing [Split Epimorphism](https://ncatlab.org/nlab/show/split+epimorphism)s and [Split Monomorphism](https://ncatlab.org/nlab/show/split+monomorphism)s as presented by [Rob Norris (@tpolecat)](https://github.com/tpolecat) at [Scala eXchange 2018](https://skillsmatter.com/skillscasts/11626-keynote-pushing-types-and-gazing-at-the-stars).
 
 Further developement (in Scala) can be found in the [Gemini Ocs3

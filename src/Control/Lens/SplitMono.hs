@@ -22,8 +22,8 @@ data SplitMono a b = SplitMono
 $(deriveInvariant ''SplitMono)
 
 -- | `reverseGet . get`, yielding a normalized formatted value. Subsequent get/reverseGet cycles are idempotent.
-normalize :: SplitMono a b -> a -> a
-normalize (SplitMono f g) = g . f
+normalize :: SplitMono a b -> b -> b
+normalize (SplitMono f g) = f . g
 
 -- | Compose with another SplitMono.
 composeSplitMono :: SplitMono a b -> SplitMono b c -> SplitMono a c

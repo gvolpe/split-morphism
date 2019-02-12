@@ -15,6 +15,14 @@ data Wedge a b = Wedge
     }
 $(deriveInvariant ''Wedge)
 
+-- | Normalize `a` via a round-trip through `b`.
+normalizeA :: Wedge a b -> a -> a
+normalizeA w = reverseGet w . get w
+
+-- | Normalize `b` via a round-trip through `a`.
+normalizeB :: Wedge a b -> b -> b
+normalizeB w = get w . reverseGet w
+
 -- | Swapping `get` and `reverseGet` yields a Wedge.
 reverse :: Wedge a b -> Wedge b a
 reverse (Wedge f g) = Wedge g f

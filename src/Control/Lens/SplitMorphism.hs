@@ -3,6 +3,11 @@
 module Control.Lens.SplitMorphism (
     reverseEpi
   , reverseMono
+  , composeSplitEpiMono
+  , composeSplitEpiPrism
+  , composeSplitMonoEpi
+  , epiAsWedge
+  , monoAsWedge
   ) where
 
 import Control.Lens

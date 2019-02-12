@@ -1,0 +1,8 @@
+split-morphism
+Copyright (c) 2019 Gabriel Volpe
+
+This software contains documentation and it's a translation to Haskell from `ocs3`
+https://github.com/gemini-hlsw/ocs3
+Copyright (c) 1998-2018 Association of Universities for Research in Astronomy, Inc. (AURA)
+Licensed under https://github.com/gemini-hlsw/ocs3/blob/develop/LICENSE
+

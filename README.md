@@ -41,7 +41,3 @@ A `Format` is a weaker `Prism` where a *subset* of `a` forms a split epi with `b
 Adapted from the [Scala
 version](https://github.com/gemini-hlsw/ocs3/blob/develop/modules/core/shared/src/main/scala/gem/optics/README.md).
 
-## LICENSE
-
-The code found in this repository is merely an adaptation of the original Scala code and therefore falls under the same
-original license: https://github.com/gemini-hlsw/ocs3/blob/develop/LICENSE.

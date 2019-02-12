@@ -6,7 +6,7 @@ module Control.Lens.Wedge where
 import Control.Lens
 import Data.Functor.Invariant.TH
 
-{- | Composition of a `SplitMono` and a `SplitEpi`, yielding an even weaker structure where neither
+{- | Composition of a `Control.Lens.SplitMono.SplitMono` and a `Control.Lens.SplitEpi.SplitEpi`, yielding an even weaker structure where neither
 `reverseGet . get` and `get . reverseGet` is an identity but both are idempotent.
 -}
 data Wedge a b = Wedge

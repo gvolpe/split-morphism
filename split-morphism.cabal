@@ -4,15 +4,17 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: bb146a9f475b8bdf55127ddfa5229036ba9c3b8f4e8c6d8a776e4d5a9470fb8b
+-- hash: 8ab3e1eb99030f48a81019ab65c662f0e73a3881320432c5eace0bc5d2c7cb11
 
 name:           split-morphism
 version:        0.1.0.0
+synopsis:       Split Epimorphisms and Monomorphisms
 description:    Please see the README on GitHub at <https://github.com/gvolpe/split-morphism#readme>
+category:       Data, Lenses, Generics
 homepage:       https://github.com/gvolpe/split-morphism#readme
 bug-reports:    https://github.com/gvolpe/split-morphism/issues
 author:         Gabriel Volpe
-maintainer:     gvolpe@github.com
+maintainer:     volpegabriel@gmail.com
 copyright:      2019 Gabriel Volpe
 license:        BSD3
 license-file:   LICENSE
@@ -36,11 +38,11 @@ library
   hs-source-dirs:
       src
   build-depends:
-      QuickCheck
+      QuickCheck >=2.12.6 && <2.13
     , base >=4.7 && <5
-    , invariant
-    , lens
-    , mtl
+    , invariant >=0.5.1 && <0.6
+    , lens >=4.17 && <4.18
+    , mtl >=2.2.2 && <2.3
   default-language: Haskell2010
 
 test-suite split-morphism-test
@@ -56,10 +58,10 @@ test-suite split-morphism-test
       test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N -Wall -Wincomplete-uni-patterns -Wincomplete-record-updates -Wcompat -Widentities -Wredundant-constraints -Wmissing-export-lists -Wpartial-fields
   build-depends:
-      QuickCheck
+      QuickCheck >=2.12.6 && <2.13
     , base >=4.7 && <5
-    , invariant
-    , lens
-    , mtl
+    , invariant >=0.5.1 && <0.6
+    , lens >=4.17 && <4.18
+    , mtl >=2.2.2 && <2.3
     , split-morphism
   default-language: Haskell2010

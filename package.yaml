@@ -3,27 +3,23 @@ version:             0.1.0.0
 github:              "gvolpe/split-morphism"
 license:             BSD3
 author:              "Gabriel Volpe"
-maintainer:          "gvolpe@github.com"
+maintainer:          "volpegabriel@gmail.com"
 copyright:           "2019 Gabriel Volpe"
 
 extra-source-files:
 - README.md
 
-# Metadata used when publishing your package
-# synopsis:            Short description of your package
-# category:            Web
+synopsis:            Split Epimorphisms and Monomorphisms
+category:            Data, Lenses, Generics
 
-# To avoid duplicated efforts in documentation and dealing with the
-# complications of embedding Haddock markup inside cabal files, it is
-# common to point users to the README.md file.
 description:         Please see the README on GitHub at <https://github.com/gvolpe/split-morphism#readme>
 
 dependencies:
 - base >= 4.7 && < 5
-- invariant
-- lens
-- mtl
-- QuickCheck
+- invariant >= 0.5.1 && < 0.6
+- lens >= 4.17 && < 4.18
+- mtl >= 2.2.2 && < 2.3
+- QuickCheck >= 2.12.6 && < 2.13
 
 library:
   source-dirs: src
@@ -46,3 +42,4 @@ tests:
     - -Wpartial-fields
     dependencies:
     - split-morphism
+

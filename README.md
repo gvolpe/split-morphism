@@ -10,7 +10,7 @@ repository](https://github.com/gemini-hlsw/ocs3/tree/develop/modules/core/shared
 
 Standard 2-way optics deal with **invertible** mappings. `Iso a b` says that `a` and `b` are equal, so round-trips in either direction are identities. `Prism a b` says that there is some *subset* of `a` that is equal to `b`.
 
-If we loosen the requirement that types be the same size we get a different kind of mapping, where the large type is squeezed into the small type in one direction or the other. An example is `Int ⟺ Byte` by the standard widening/narrowing conversions. Note that the round-trip starting at `Byte` is an identity, but the round-up starting at `Int` is merely **idempotent**: the first round-trip "normalizes" an `Int` into `Byte` range and thereafter the round-trip is an identity.
+If we loosen the requirement that types be the same size we get a different kind of mapping, where the large type is squeezed into the small type in one direction or the other. An example is `Int ⟺ ByteString` by the standard widening/narrowing conversions. Note that the round-trip starting at `ByteString` is an identity, but the round-up starting at `Int` is merely **idempotent**: the first round-trip "normalizes" an `Int` into `ByteString` range and thereafter the round-trip is an identity.
 
 This [phenomenon](https://ncatlab.org/nlab/show/split+epimorphism) is a thing, called a **split monomorphism** or a **split epimorphism** depending on which side is bigger. Note that every `Iso` is trivially a split where the idempotent round-trip happens to be an identity.
 

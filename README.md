@@ -118,6 +118,34 @@ ghci> W.normalizeA wedge 123
 123
 ```
 
+### Invariant mapping
+
+All the data types exposed by this library, namely `SplitEpi`, `SplitMono`, `Format` and `Wedge`, have instances of `InvariantFunctor`.
+
+#### SplitEpi
+
+```
+ghci> import Data.Functor.Invariant
+ghci> let epi' = invmap (+1) (+2) epi
+ghci> Se.reverseGet epi' 123
+"125"
+ghci> SE.get epi "foo"
+1
+ghci> SE.get epi' "87"
+88
+```
+
+#### Format
+
+```
+ghci> import Data.Functor.Invariant
+ghci> let format' = invmap not not format
+ghci> F.reverseGet format' True
+1
+ghci> F.reverseGet format' False
+2
+```
+
 ### Conversions from Prism and Iso
 
 #### A `Prism` can be converted into a `Format`:

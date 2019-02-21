@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: dd3d2ced30942a2b184e34173693bdb2b966543f437e137cc172acc11409da91
+-- hash: d09afe77299f307c5ed75a4c63139e7c4ea50c480a557e3835d09d16e3d14b5e
 
 name:           split-morphism
 version:        0.1.0.0
@@ -39,11 +39,9 @@ library
   hs-source-dirs:
       src
   build-depends:
-      QuickCheck >=2.12.6 && <2.13
-    , base >=4.7 && <5
+      base >=4.7 && <5
     , invariant >=0.5.1 && <0.6
     , lens >=4.17 && <4.18
-    , mtl >=2.2.2 && <2.3
   default-language: Haskell2010
 
 test-suite split-morphism-test
@@ -63,6 +61,5 @@ test-suite split-morphism-test
     , base >=4.7 && <5
     , invariant >=0.5.1 && <0.6
     , lens >=4.17 && <4.18
-    , mtl >=2.2.2 && <2.3
     , split-morphism
   default-language: Haskell2010

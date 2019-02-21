@@ -19,8 +19,6 @@ dependencies:
 - base >= 4.7 && < 5
 - invariant >= 0.5.1 && < 0.6
 - lens >= 4.17 && < 4.18
-- mtl >= 2.2.2 && < 2.3
-- QuickCheck >= 2.12.6 && < 2.13
 
 library:
   source-dirs: src
@@ -43,4 +41,5 @@ tests:
     - -Wpartial-fields
     dependencies:
     - split-morphism
+    - QuickCheck >= 2.12.6 && < 2.13
 

@@ -5,7 +5,7 @@ split-morphism
 
 Experimental package representing [Split Epimorphism](https://ncatlab.org/nlab/show/split+epimorphism)s and [Split Monomorphism](https://ncatlab.org/nlab/show/split+monomorphism)s as presented by [Rob Norris (@tpolecat)](https://github.com/tpolecat) at [Scala eXchange 2018](https://skillsmatter.com/skillscasts/11626-keynote-pushing-types-and-gazing-at-the-stars).
 
-Further developement (in Scala) can be found in the [Gemini Ocs3
+Further development (in Scala) can be found in the [Gemini Ocs3
 repository](https://github.com/gemini-hlsw/ocs3/tree/v0.11.13/modules/core/shared/src/main/scala/gem/optics).
 
 ## Non-Injective Optics
@@ -41,7 +41,7 @@ A `Format` is a weaker `Prism` where a *subset* of `a` forms a split epi with `b
 ```
 
 Adapted from the [Scala
-version](https://github.com/gemini-hlsw/ocs3/blob/develop/modules/core/shared/src/main/scala/gem/optics/README.md).
+version](https://github.com/gemini-hlsw/ocs3/blob/v0.11.13/modules/core/shared/src/main/scala/gem/optics/README.md).
 
 ## Examples
 

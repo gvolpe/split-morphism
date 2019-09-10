@@ -4,10 +4,10 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 16619617ce7e8982ccdbe3510ed330ba1987156bfcdce979b9fd9a8f0621c44c
+-- hash: b5bb47e7a59df29124efd70e77fcb5181dfbafa4781df722f1502f21f4262234
 
 name:           split-morphism
-version:        0.1.0.0
+version:        0.1.0.1
 synopsis:       Split Epimorphisms and Monomorphisms
 description:    Please see the README on GitHub at <https://github.com/gvolpe/split-morphism#readme>
 category:       Data, Lenses, Generics

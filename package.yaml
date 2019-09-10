@@ -41,5 +41,4 @@ tests:
     - -Wpartial-fields
     dependencies:
     - split-morphism
-    - QuickCheck >= 2.12.6 && < 2.13
-
+    - QuickCheck >= 2.12.6
